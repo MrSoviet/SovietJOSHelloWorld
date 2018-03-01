@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e66ff182-32df-4e6d-ab7b-24f3e17b2888" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/ColorClass.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/TouchClass.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/HelloWorld.jar" afterPath="$PROJECT_DIR$/HelloWorld.jar" />
+      <change beforePath="$PROJECT_DIR$/out/production/HelloWorld/ColorClass.class" afterPath="$PROJECT_DIR$/out/production/HelloWorld/ColorClass.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/HelloWorld/Main$1.class" afterPath="$PROJECT_DIR$/out/production/HelloWorld/Main$1.class" />
       <change beforePath="$PROJECT_DIR$/out/production/HelloWorld/Main.class" afterPath="$PROJECT_DIR$/out/production/HelloWorld/Main.class" />
+      <change beforePath="$PROJECT_DIR$/src/ColorClass.java" afterPath="$PROJECT_DIR$/src/ColorClass.java" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,14 +21,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="52" column="48" lean-forward="false" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
+            <state relative-caret-position="-17">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="class#1439:1737" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TouchClass.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TouchClass.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -36,10 +48,9 @@
       <file leaf-file-name="ColorClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ColorClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="-51">
+              <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#getColor#0;class#ColorClass#0" expanded="false" />
                 <element signature="method#colorToString#0;class#ColorClass#0" expanded="false" />
                 <element signature="class#COLOR#0;class#ColorClass#0" expanded="false" />
@@ -84,6 +95,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/ColorSensor.java" />
         <option value="$PROJECT_DIR$/src/ColorClass.java" />
+        <option value="$PROJECT_DIR$/src/TouchClass.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
@@ -116,6 +128,11 @@
             <path>
               <item name="SovietJOSHelloWorld" type="b2602c69:ProjectViewProjectNode" />
               <item name="SovietJOSHelloWorld" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SovietJOSHelloWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SovietJOSHelloWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -296,7 +313,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3067896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3067896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -316,7 +333,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -327,7 +344,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -337,7 +353,6 @@
         <state relative-caret-position="204">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getColor#0;class#ColorClass#0" expanded="false" />
             <element signature="method#colorToString#0;class#ColorClass#0" expanded="false" />
             <element signature="class#COLOR#0;class#ColorClass#0" expanded="false" />
@@ -351,7 +366,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -361,7 +375,6 @@
         <state relative-caret-position="306">
           <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getColor#0;class#ColorClass#0" expanded="false" />
             <element signature="method#colorToString#0;class#ColorClass#0" expanded="false" />
             <element signature="class#COLOR#0;class#ColorClass#0" expanded="false" />
@@ -375,7 +388,6 @@
           <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -385,7 +397,6 @@
         <state relative-caret-position="697">
           <caret line="67" column="17" lean-forward="false" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getColor#0;class#ColorClass#0" expanded="false" />
             <element signature="method#colorToString#0;class#ColorClass#0" expanded="false" />
             <element signature="class#COLOR#0;class#ColorClass#0" expanded="false" />
@@ -399,7 +410,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -410,7 +420,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -421,7 +430,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -432,7 +440,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -443,7 +450,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -454,7 +460,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -465,7 +470,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -487,10 +491,9 @@
     <entry file="file://$PROJECT_DIR$/src/ColorSensor.java" />
     <entry file="file://$PROJECT_DIR$/src/ColorClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="-51">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getColor#0;class#ColorClass#0" expanded="false" />
             <element signature="method#colorToString#0;class#ColorClass#0" expanded="false" />
             <element signature="class#COLOR#0;class#ColorClass#0" expanded="false" />
@@ -500,11 +503,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="52" column="48" lean-forward="false" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
+        <state relative-caret-position="-17">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#1439:1737" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TouchClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

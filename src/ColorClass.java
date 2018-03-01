@@ -3,20 +3,20 @@ import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
-public class ColorClass implements Runnable {
+public class ColorClass extends Thread {
     private SensorModes sensorColor;
     private SampleProvider rgb;
     private float sampleRGB[];
 
     public ColorClass(SensorModes sensorColor) {
         this.sensorColor = sensorColor;
-        this.rgb = this.sensorColor.getMode("RGB");
-        this.sampleRGB = new float[rgb.sampleSize()];
+        rgb = this.sensorColor.getMode("RGB");
+        sampleRGB = new float[rgb.sampleSize()];
     }
 
     @Override
     public void run() {
-        while(true) {
+        while(!Thread.currentThread().isInterrupted()) {
             rgb.fetchSample(sampleRGB, 0);
             LCD.drawString(colorToString(getColor()), 0, 2);
             Delay.msDelay(50);
