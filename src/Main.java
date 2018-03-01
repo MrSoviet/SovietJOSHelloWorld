@@ -13,25 +13,24 @@ import lejos.utility.Delay;
 
 // ================================= EV38 ================================= //
 public class Main {
-    public static final EncoderMotor motorLeft = new UnregulatedMotor(MotorPort.A);
-    public static final EncoderMotor motorRight = new UnregulatedMotor(MotorPort.D);
-    public static final SensorModes sensorTouch = new EV3TouchSensor(SensorPort.S1);
-    public static final SensorModes sensorUltrasonic = new EV3UltrasonicSensor(SensorPort.S2);
-    public static final SensorModes sensorColor = new EV3ColorSensor(SensorPort.S3);
-    public static final SensorModes sensorGyro = new EV3GyroSensor(SensorPort.S4);
+    public static final EncoderMotor MOTOR_LEFT = new UnregulatedMotor(MotorPort.A);
+    public static final EncoderMotor MOTOR_RIGHT = new UnregulatedMotor(MotorPort.D);
+    public static final SensorModes SENSOR_TOUCH = new EV3TouchSensor(SensorPort.S1);
+    public static final SensorModes SENSOR_ULTRASONIC = new EV3UltrasonicSensor(SensorPort.S2);
+    public static final SensorModes SENSOR_COLOR = new EV3ColorSensor(SensorPort.S3);
+    public static final SensorModes SENSOR_GYRO = new EV3GyroSensor(SensorPort.S4);
+
+    public static final ColorClass COLOR_CLASS = new ColorClass(SENSOR_COLOR);
 
     public static float sampleTouch[];
-    public static float sampleRGB[];
 
     public static boolean run = true;
 
     public static void main(String[] args) {
         LCD.drawString("helloWorld", 0, 0);
 
-        SampleProvider touch = sensorTouch.getMode("Touch");
-        SampleProvider rgb = sensorColor.getMode("RGB");
+        SampleProvider touch = SENSOR_TOUCH.getMode("Touch");
         sampleTouch = new float[touch.sampleSize()];
-        sampleRGB = new float[rgb.sampleSize()];
 
         Button.ESCAPE.addKeyListener(new KeyListener() {
             @Override
@@ -50,6 +49,10 @@ public class Main {
         Sound.twoBeeps();
         Sound.beepSequenceUp();
 
+
+        Thread thread = new Thread(COLOR_CLASS);
+        thread.start();
+
         while(run) {
             /*
             Delay.msDelay(10);
@@ -60,13 +63,8 @@ public class Main {
             } else {
                 LCD.drawString("Released", 0, 1);
             }*/
-
-            rgb.fetchSample(sampleRGB, 0);
-            LCD.drawString("R: " + sampleRGB[0], 0, 2);
-            LCD.drawString("G: " + sampleRGB[1], 0, 3);
-            LCD.drawString("B: " + sampleRGB[2], 0, 4);
-
-            Delay.msDelay(500);
         }
     }
+
+
 }
