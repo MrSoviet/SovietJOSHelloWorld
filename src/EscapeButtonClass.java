@@ -9,7 +9,7 @@ public class EscapeButtonClass extends Thread {
             @Override
             public void keyPressed(Key key) {
                 if (key.getId() == Button.ID_ESCAPE) {
-                    Main.run = false;
+
                 }
             }
 
@@ -19,6 +19,6 @@ public class EscapeButtonClass extends Thread {
             }
         });
 
-        while(Main.run && !Thread.currentThread().isInterrupted()) {}
+        while(!Thread.currentThread().isInterrupted()) {}
     }
 }
