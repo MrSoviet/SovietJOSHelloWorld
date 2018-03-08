@@ -58,7 +58,6 @@ public class Main {
                 motorL.forward();
                 motorR.backward();
             }
-
         }
 
         public void run() {
@@ -96,6 +95,9 @@ public class Main {
     }
 
     public Main() throws InterruptedException {
+
+        gyroSamples = gyro.getAngleMode();
+        gyro.reset();
 
         Thread t1 = new Thread( new MotorClass() );
         Thread t3 = new Thread( new EscapeButton() );

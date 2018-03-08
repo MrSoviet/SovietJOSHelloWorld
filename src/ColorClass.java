@@ -19,7 +19,6 @@ public class ColorClass implements Runnable {
         while(!Thread.currentThread().isInterrupted()){
             rgb.fetchSample(sampleRGB, 0);
             LCD.drawString(colorToString(getColor()), 0, 2);
-            Delay.msDelay(50);
         }
     }
 
@@ -28,19 +27,16 @@ public class ColorClass implements Runnable {
         float g = sampleRGB[1];
         float b = sampleRGB[2];
 
-        if ((0.0 < r && r < 0.1) && (0.0 < g && g < 0.1) && (0.0 < b && b < 0.1)) {
-            return COLOR.BLACK;
-        } else if ((0.25 < r && r < 0.35) && (0.25 < g && g < 0.35) && (0.3 < b && b < 0.4)) {
-            return COLOR.WHITE;
-        } else if ((0.2 < r && r < 0.3) && (0.0 < g && g < 0.1) && (0.0 < b && b < 0.1)) {
-            return COLOR.RED;
-        } else if ((0.05 < r && r < 0.15) && (0.1 < g && g < 0.2) && (0.0 < b && b < 0.1)) {
-            return COLOR.GREEN;
-        } else if ((0.0 < r && r < 0.1) && (0.0 < g && g < 0.1) && (0.1 < b && b < 0.2)) {
-            return COLOR.BLUE;
-        } else if ((0.2 < r && r < 0.3) && (0.2 < g && g < 0.3) && (0.0 < b && b < 0.1)) {
-            return COLOR.YELLOW;
-        }
+        LCD.drawString("color r: " + r, 0, 1);
+        LCD.drawString("color g: " + g, 0, 2);
+        LCD.drawString("color b: " + b, 0, 3);
+
+        if(r>0.09&&r<0.13&&g>0.13&&g<0.18&&b>0.035&&b<0.06)  return COLOR.GREEN;
+        else if(r>0.2&&r<0.3&&g>0.15&&g<0.25&&b<0.06) return COLOR.YELLOW;
+        else if(r>0.2&&r<0.26&&g>0.035&&g<0.05&&b>0.025&&b<0.04) return COLOR.RED;
+        else if(r>0.22&&r<0.32&&g>0.22&&g<0.32&&b>0.22&&b<0.32)  return COLOR.WHITE;
+        else if((0.0 < r && r < 0.1) && (0.0 < g && g < 0.1) && (0.0 < b && b < 0.1)) return COLOR.BLACK;
+        else if(r>0.03&&r<0.045&&g>0.045&&g<0.55&&b>0.08&&b<0.12) return COLOR.BLUE;
 
         return COLOR.UNKNOWN;
     }
