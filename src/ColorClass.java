@@ -16,7 +16,7 @@ public class ColorClass extends Thread {
 
     @Override
     public void run() {
-        while(!Thread.currentThread().isInterrupted()) {
+        while(Main.run && !Thread.currentThread().isInterrupted()) {
             rgb.fetchSample(sampleRGB, 0);
             LCD.drawString(colorToString(getColor()), 0, 2);
             Delay.msDelay(50);

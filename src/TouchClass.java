@@ -16,7 +16,7 @@ public class TouchClass extends Thread {
 
     @Override
     public void run() {
-        while(!Thread.currentThread().isInterrupted()) {
+        while(Main.run && !Thread.currentThread().isInterrupted()) {
             touch.fetchSample(sampleTouch, 0);
             if (sampleTouch[0] == 1) {
                 LCD.drawString("Touched", 0, 1);
