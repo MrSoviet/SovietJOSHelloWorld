@@ -16,7 +16,7 @@ public class ColorClass implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
+        while(!Thread.currentThread().isInterrupted()){
             rgb.fetchSample(sampleRGB, 0);
             LCD.drawString(colorToString(getColor()), 0, 2);
             Delay.msDelay(50);
