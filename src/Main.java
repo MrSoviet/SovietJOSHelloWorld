@@ -1,14 +1,9 @@
 import lejos.hardware.Button;
-import lejos.hardware.Key;
-import lejos.hardware.KeyListener;
-import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.motor.UnregulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.*;
-import lejos.robotics.EncoderMotor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
@@ -20,6 +15,7 @@ public class Main {
     public static final SensorModes SENSOR_TOUCH = new EV3TouchSensor(SensorPort.S1);
     public static final SensorModes SENSOR_ULTRASONIC = new EV3UltrasonicSensor(SensorPort.S2);
     public static final SensorModes SENSOR_COLOR = new EV3ColorSensor(SensorPort.S3);
+    //public static final EV3GyroSensor SENSOR_GYRO = new EV3GyroSensor(SensorPort.S4);
 
     public static final ColorClass COLOR_CLASS = new ColorClass(SENSOR_COLOR);
 
