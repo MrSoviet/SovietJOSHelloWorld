@@ -15,7 +15,6 @@ public class Main {
     public static final SensorModes SENSOR_TOUCH = new EV3TouchSensor(SensorPort.S1);
     public static final SensorModes SENSOR_ULTRASONIC = new EV3UltrasonicSensor(SensorPort.S2);
     public static final SensorModes SENSOR_COLOR = new EV3ColorSensor(SensorPort.S3);
-    //public static final EV3GyroSensor SENSOR_GYRO = new EV3GyroSensor(SensorPort.S4);
 
     public static final ColorClass COLOR_CLASS = new ColorClass(SENSOR_COLOR);
 
@@ -48,16 +47,17 @@ public class Main {
 
     class MotorClass implements Runnable {
         public void untilBlackTurn(){
-            while (!COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK) ){
                 motorL.setSpeed(200);
                 motorR.setSpeed(200);
                 motorL.forward();
                 motorR.backward();
-            }
         }
 
         public void run() {
             while(!Thread.currentThread().isInterrupted()) {
+
+                gyroSamples.fetchSample(angle, 0);
+
                     if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK)){
                         motorL.setSpeed(120);
                         motorR.setSpeed(200);
@@ -65,7 +65,10 @@ public class Main {
                         motorL.forward();
                         motorR.forward();
                     }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.RED)) {
-                        untilBlackTurn();
+
+                        while (angle[0] > -180) {
+                            untilBlackTurn();
+                        }
                     }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLUE)){
                         untilBlackTurn();
                     }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.YELLOW)){
