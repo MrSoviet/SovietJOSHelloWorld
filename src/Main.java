@@ -54,6 +54,8 @@ public class Main {
                 motorL.forward();
                 motorR.backward();
             }
+
+            LCD.drawString(angle[0] + "", 0, 6);
         }
 
         public void run() {
@@ -90,6 +92,27 @@ public class Main {
         }
     }
 
+    class UltrasonicClass implements Runnable {
+        private SampleProvider distance = SENSOR_ULTRASONIC.getMode("Distance");
+        private float[] sampleDistance = new float[distance.sampleSize()];
+
+        public void run() {
+            while(!Thread.currentThread().isInterrupted()) {
+                distance.fetchSample(sampleDistance, 0);
+
+                if (sampleDistance[0] < 0.3) {
+                    LCD.clear();
+                    LCD.drawString("Hinderniss", 0, 0);
+                } else {
+                    LCD.clear();
+                    LCD.drawString("kein Hinderniss", 0, 0);
+                }
+
+                Delay.msDelay(50);
+            }
+        }
+    }
+
     public Main() throws InterruptedException {
 
         gyroSamples = gyro.getAngleMode();
@@ -99,15 +122,18 @@ public class Main {
         Thread t3 = new Thread( new EscapeButton() );
         Thread t4 = new Thread( new GyroClass());
         final Thread t2 = new Thread(COLOR_CLASS);
+        Thread t5 = new Thread( new UltrasonicClass() );
         t2.start();
         t3.start();
         t4.start();
         t1.start();
+        //t5.start();
 
         t3.join();
         if(t2.isAlive()) t2.interrupt();
         if(t4.isAlive()) t4.interrupt();
         if(t1.isAlive()) t1.interrupt();
+        //if(t5.isAlive()) t5.interrupt();
     }
 
     public static void main(String[] args) throws InterruptedException {
