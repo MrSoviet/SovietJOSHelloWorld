@@ -191,6 +191,7 @@ public class Main {
 
         public void run() {
             while(!Thread.currentThread().isInterrupted()) {
+                gyroSamples.fetchSample(angle, 0);
                     if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK)){
                         motorL.setSpeed(120);
                         motorR.setSpeed(200);
