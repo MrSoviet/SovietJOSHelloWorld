@@ -34,28 +34,159 @@ public class Main {
     }
 
     class GyroClass implements Runnable {
-        public void run() {
+        public void run()
+        {
             while(!Thread.currentThread().isInterrupted()) {
                 gyroSamples.fetchSample(angle, 0);
-                LCD.drawString("Gyro Angle: "+angle[0], 0, 5);
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {break;}
+
+                /*
+                if (angle[0] > -90) {
+                    motorL.setSpeed(200);
+                    motorR.setSpeed(0);
+                    motorL.forward();
+                    motorR.forward();
+                } else {
+                    motorL.setSpeed(0);
+                    motorR.setSpeed(200);
+                    motorL.forward();
+                    motorR.forward();
+
+                    while (angle[0] < 90) {
+                        gyroSamples.fetchSample(angle, 0);
+                    }
+                }*/
             }
         }
     }
 
 
     class MotorClass implements Runnable {
-        public void untilBlackTurn(){
-            while (!COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK) ){
-                motorL.setSpeed(200);
-                motorR.setSpeed(200);
+        public boolean turnRightUntilBlack(){
+            while (angle[0] > -90){
+                motorL.setSpeed(100);
+                motorR.setSpeed(100);
+                motorL.forward();
+                motorR.backward();
+
+                if(COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK) && angle[0] < -45) {
+                    /*while (angle[0] > -90) {
+                        if(angle[0] <= -89.5) {
+                            motorL.stop(true);
+                            motorR.stop(true);
+                        }
+                    }*/
+
+                    motorL.stop(true);
+                    motorR.stop(true);
+                    return true;
+                }
+            }
+
+            motorL.stop(true);
+            motorR.stop(true);
+
+            while (angle[0] <= -0.5) {
+                motorL.setSpeed(100);
+                motorR.setSpeed(100);
+                motorL.backward();
+                motorR.forward();
+            }
+
+            motorL.stop(true);
+            motorR.stop(true);
+
+            return false;
+        }
+
+        public boolean turnLeftUntilBlack() {
+            while (angle[0] < 90) {
+                motorL.setSpeed(100);
+                motorR.setSpeed(100);
+                motorL.backward();
+                motorR.forward();
+
+                if(COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK) && angle[0] > 45) {
+                    /*while (angle[0] < 90) {
+                        if(angle[0] >= 89.5) {
+                            motorL.stop(true);
+                            motorR.stop(true);
+                        }
+                    }*/
+
+                    motorL.stop(true);
+                    motorR.stop(true);
+
+                    return true;
+                }
+            }
+
+            motorL.stop(true);
+            motorR.stop(true);
+
+            while (angle[0] >= 0.5) {
+                motorL.setSpeed(100);
+                motorR.setSpeed(100);
                 motorL.forward();
                 motorR.backward();
             }
 
-            LCD.drawString(angle[0] + "", 0, 6);
+            motorL.stop(true);
+            motorR.stop(true);
+
+            return false;
+        }
+
+        public boolean moveForwardUntilBlack() {
+            long end1 = System.currentTimeMillis() + 1000;
+
+            while (System.currentTimeMillis() < end1) {
+                motorL.setSpeed(100);
+                motorR.setSpeed(100);
+                motorL.forward();
+                motorR.forward();
+
+                if(COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK)) {
+                    motorL.stop(true);
+                    motorR.stop(true);
+                    return true;
+                }
+            }
+
+            motorL.stop(true);
+            motorR.stop(true);
+
+            long end2 = System.currentTimeMillis() + 1000;
+            while (System.currentTimeMillis() < end2) {
+                motorL.setSpeed(100);
+                motorR.setSpeed(100);
+                motorL.backward();
+                motorR.backward();
+            }
+
+            motorL.stop(true);
+            motorR.stop(true);
+
+            return false;
+        }
+
+        public void turnAroundUntilBlack() {
+            while(angle[0] < 180) {
+                motorL.setSpeed(100);
+                motorR.setSpeed(100);
+                motorL.backward();
+                motorR.forward();
+
+                if(COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK) && angle[0] > 135) {
+                    while (angle[0] < 180) {
+                        if(angle[0] >= 179.5) {
+                            motorL.stop(true);
+                            motorR.stop(true);
+                        }
+                    }
+
+                    return;
+                }
+            }
         }
 
         public void run() {
@@ -67,16 +198,26 @@ public class Main {
                         motorL.forward();
                         motorR.forward();
                     }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.RED)) {
-                        untilBlackTurn();
+                        gyro.reset();
+                        turnAroundUntilBlack();
                     }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLUE)){
-                        untilBlackTurn();
+                        //insert logic
                     }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.YELLOW)){
+                        gyro.reset();
+
                         motorL.setSpeed(200);
                         motorR.setSpeed(200);
                         motorL.forward();
                         motorR.forward();
-                        Delay.msDelay(300);
-                        untilBlackTurn();
+                        Delay.msDelay(900);
+
+                        if (!turnRightUntilBlack()) {
+                            if(!moveForwardUntilBlack()) {
+                                if(!turnLeftUntilBlack()) {
+                                    //oh you fucked up mate
+                                }
+                            }
+                        }
                     }else{
                         motorL.setSpeed(200);
                         motorR.setSpeed(120);
@@ -123,6 +264,7 @@ public class Main {
         Thread t4 = new Thread( new GyroClass());
         final Thread t2 = new Thread(COLOR_CLASS);
         Thread t5 = new Thread( new UltrasonicClass() );
+
         t2.start();
         t3.start();
         t4.start();
