@@ -1,4 +1,5 @@
 import lejos.hardware.Button;
+import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
@@ -23,9 +24,11 @@ public class Main {
     private float[] angle = { 0.0f };
     private SampleProvider gyroSamples = null;
 
+    private static boolean run = true;
+
     class EscapeButton implements Runnable {
         public void run() {
-            while(Button.ESCAPE.isUp()) {
+            while(Button.ESCAPE.isUp() && run) {
                 try{
                     Thread.sleep(10);
                 } catch (InterruptedException e) {break;}
@@ -38,23 +41,6 @@ public class Main {
         {
             while(!Thread.currentThread().isInterrupted()) {
                 gyroSamples.fetchSample(angle, 0);
-
-                /*
-                if (angle[0] > -90) {
-                    motorL.setSpeed(200);
-                    motorR.setSpeed(0);
-                    motorL.forward();
-                    motorR.forward();
-                } else {
-                    motorL.setSpeed(0);
-                    motorR.setSpeed(200);
-                    motorL.forward();
-                    motorR.forward();
-
-                    while (angle[0] < 90) {
-                        gyroSamples.fetchSample(angle, 0);
-                    }
-                }*/
             }
         }
     }
@@ -69,13 +55,6 @@ public class Main {
                 motorR.backward();
 
                 if(COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK) && angle[0] < -45) {
-                    /*while (angle[0] > -90) {
-                        if(angle[0] <= -89.5) {
-                            motorL.stop(true);
-                            motorR.stop(true);
-                        }
-                    }*/
-
                     motorL.stop(true);
                     motorR.stop(true);
                     return true;
@@ -106,13 +85,6 @@ public class Main {
                 motorR.forward();
 
                 if(COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK) && angle[0] > 45) {
-                    /*while (angle[0] < 90) {
-                        if(angle[0] >= 89.5) {
-                            motorL.stop(true);
-                            motorR.stop(true);
-                        }
-                    }*/
-
                     motorL.stop(true);
                     motorR.stop(true);
 
@@ -138,7 +110,6 @@ public class Main {
 
         public boolean moveForwardUntilBlack() {
             long end1 = System.currentTimeMillis() + 1000;
-
             while (System.currentTimeMillis() < end1) {
                 motorL.setSpeed(100);
                 motorR.setSpeed(100);
@@ -191,40 +162,66 @@ public class Main {
 
         public void run() {
             while(!Thread.currentThread().isInterrupted()) {
-                gyroSamples.fetchSample(angle, 0);
-                    if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK)){
-                        motorL.setSpeed(120);
-                        motorR.setSpeed(200);
-                        //forward for 1 seconds
-                        motorL.forward();
-                        motorR.forward();
-                    }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.RED)) {
-                        gyro.reset();
-                        turnAroundUntilBlack();
-                    }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLUE)){
-                        //insert logic
-                    }else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.YELLOW)){
-                        gyro.reset();
+                if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK)){
+                    motorL.setSpeed(120);
+                    motorR.setSpeed(200);
 
-                        motorL.setSpeed(200);
-                        motorR.setSpeed(200);
-                        motorL.forward();
-                        motorR.forward();
-                        Delay.msDelay(900);
+                    motorL.forward();
+                    motorR.forward();
+                } else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.RED)) {
+                    gyro.reset();
+                    turnAroundUntilBlack();
+                } else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLUE)){
+                    gyro.reset();
+                    turnAroundUntilBlack();
+                } else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.GREEN)) {
+                    motorL.stop(true);
+                    motorR.stop(true);
 
-                        if (!turnRightUntilBlack()) {
-                            if(!moveForwardUntilBlack()) {
-                                if(!turnLeftUntilBlack()) {
-                                    //oh you fucked up mate
-                                }
+                    Sound.twoBeeps();
+                    Sound.beepSequenceUp();
+
+                    run = false;
+                } else if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.YELLOW)){
+                    gyro.reset();
+
+                    long end = System.currentTimeMillis() + 900;
+                    while (System.currentTimeMillis() < end) {
+                        if (COLOR_CLASS.getColor().equals(ColorClass.COLOR.BLACK)) {
+                            motorL.setSpeed(120);
+                            motorR.setSpeed(200);
+
+                            motorL.forward();
+                            motorR.forward();
+                        } else {
+                            motorL.setSpeed(200);
+                            motorR.setSpeed(120);
+                            //forward for 1 seconds
+                            motorL.forward();
+                            motorR.forward();
+                        }
+
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {break;}
+                    }
+
+                    motorL.stop(true);
+                    motorR.stop(true);
+
+                    if (!turnRightUntilBlack()) {
+                        if(!moveForwardUntilBlack()) {
+                            if(!turnLeftUntilBlack()) {
+                                //oh you fucked up mate
                             }
                         }
-                    }else{
-                        motorL.setSpeed(200);
-                        motorR.setSpeed(120);
-                        //forward for 1 seconds
-                        motorL.forward();
-                        motorR.forward();
+                    }
+                } else {
+                    motorL.setSpeed(200);
+                    motorR.setSpeed(120);
+                    //forward for 1 seconds
+                    motorL.forward();
+                    motorR.forward();
                 }
 
                 try {
